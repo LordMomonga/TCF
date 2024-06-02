@@ -1,21 +1,22 @@
-const Element = require('../models/elementTest')
-const AcademicYear = require('../models/AcademicYear ')
+const Element = require('../models/elementTest');
 
 exports.addElement = async(req, res) => {
     try {
 
        
-        if(questions.length !== 4){
-            return res.status(400).json({error: 'vous devez avoir 4 questions exactement'})
-        }
+        
 let data = {
     level: req.body.level,
-    questions: req.body.questions,
+    question: req.body.questions,
+    solutions: req.body.solutions,
     response: req.body.response,
+    type: req.body.type,
     imageUrl: req.body.imageUrl
 
 }       
-
+if(data.solutions.length !== 4){
+    return res.status(400).json({error: 'vous devez avoir 4 questions exactement'})
+}
 const element = new Element(data)
 element.save();
 return res.status(200).send({message: "Created Element"});

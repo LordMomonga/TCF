@@ -5,7 +5,12 @@ const Element = new mongoose.Schema({
         type: String,
         required:true
     },
-  questions:  [
+    question:{
+      type: String,
+      required:true
+    }
+    ,
+  solutions:  [
         {
           type: String,
           required: true
@@ -14,8 +19,11 @@ const Element = new mongoose.Schema({
     response:{
         type:String,
         required:true
-    }
-    ,
+    },
+    type:{
+      type:String,
+      required:true
+    },
 
     imageUrl: {
         type:String,

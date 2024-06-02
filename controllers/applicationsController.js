@@ -16,7 +16,7 @@ exports.getStudentApplications = async(req,res) => {
     try {
         let id = req.userId;
 
-        let data = await Applications.find({student_id: id}).populate('class_id').populate('teacher_id');
+        let data = await Applications.find({student_id: id});
 
         return res.status(200).send({message: "Students Applications", data: data});
 
