@@ -86,7 +86,7 @@ exports.getSchoolStudents = async (req,res) => {
         let academicYear = req.params.academic_year_id;
 
         console.log('ACADEMIC YEAR: ', academicYear); 
-        console.log('school id: ', schoolId)
+        console.log('school id: ')
         
         let allStudents = await StudentInfo.find({academic_year: academicYear}).populate('student_id').populate('academic_year').populate('speciality_id');
 
@@ -104,7 +104,7 @@ exports.getSchoolAcceptedStudents = async(req,res) => {
         // console.log('GET ACCEPTED')
         let academicYear = req.params.academic_year_id;
 
-        console.log('SCHOOL ID: ', schoolId);
+        console.log('SCHOOL ID: ');
         console.log('ACADEMIC YEAR: ', academicYear);
 
         let allStudents = await StudentInfo.find({academic_year: academicYear, $or: [{ status: 'accepted'},{status: 'suspended'}]}).populate('student_id').populate('academic_year').populate('speciality_id');
