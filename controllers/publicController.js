@@ -27,16 +27,15 @@ exports.getSchoolsPublic = async(req, res) => {
 
     } catch (error) {
         return res.status(500).send({message: error});
+        console.log("erreur")
     }
 }
 
 exports.getSpecialitiesPublic = async(req,res) => {
     try {
-        let schoolId = req.params.id;
 
-        console.log('SCHOOL ID:', schoolId);
 
-        let speciality = await Speciality.find({school_id: schoolId}).populate('school_id');
+        let speciality = await Speciality.find();
 
         console.log('SPECIALITIES: ', speciality);
 

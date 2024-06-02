@@ -10,7 +10,7 @@ applicationRouter.get('/applications', [verifyMidleware.verifyToken, verifyMidle
 
 applicationRouter.get('/applications/student', [verifyMidleware.verifyToken, verifyMidleware.isUser], applicationsController.getStudentApplications);
 
-applicationRouter.post('/applications', [verifyMidleware.verifyToken, verifyMidleware.isStudent], applicationsController.newApplication);
+applicationRouter.post('/applications', [verifyMidleware.verifyToken, verifyMidleware.isUser], applicationsController.newApplication);
 
 applicationRouter.post('/applications/accept', [verifyMidleware.verifyToken, verifyMidleware.isAdmin], applicationsController.approveApplication);
 

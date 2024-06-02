@@ -51,7 +51,7 @@ exports.getSchoolSpecialities = async(req,res) => {
 exports.getAllSchools = async(req,res) => {
     try {
 
-        let schools = await User.find({account_type: 'school'}).populate('class_id');
+        let schools = await User.find({account_type: 'User'}).populate('class_id');
 
         return res.status(200).send({message: "All Specialities", data: application});
 

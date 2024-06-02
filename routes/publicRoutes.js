@@ -7,7 +7,7 @@ const publicRouter = express.Router();
 
 publicRouter.get('/public/schools', publicController.getSchoolsPublic);
 
-publicRouter.get('/public/specialites/:id', publicController.getSpecialitiesPublic);
+publicRouter.get('/public/specialites', publicController.getSpecialitiesPublic);
 
 module.exports = publicRouter;
 

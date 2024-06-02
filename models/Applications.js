@@ -13,11 +13,7 @@ const Applications = new mongoose.Schema({
         ref:"User",
         required: true
     },
-    class_id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref:"Classroom",
-        required: true
-    },
+   
     status: {
         type: String,
         required: true
