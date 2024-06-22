@@ -17,8 +17,8 @@ let data = {
     audioUrl: req.body.audioUrl,
 }       
 
-const element = new Element(data)
-element.save();
+const elem = new Element(data)
+elem.save();
 
 return res.status(200).send({message: "Creation reussi"});
 
