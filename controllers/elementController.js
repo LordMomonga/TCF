@@ -10,14 +10,11 @@ let data = {
     solution1: req.body.solution1,
     solution2: req.body.solution2,
     solution3: req.body.solution3,
-
     solution4: req.body.solution4,
-
     response: req.body.response,
     typeElement: req.body.type,
     imageUrl: req.body.imageUrl,
     audioUrl: req.body.audioUrl,
-    numero: req.body.numero
 }       
 
 const element = new Element(data)
