@@ -12,7 +12,7 @@ let data = {
     solution3: req.body.solution3,
     solution4: req.body.solution4,
     response: req.body.response,
-    typeElement: req.body.type,
+    typeElement: req.body.typeElement,
     imageUrl: req.body.imageUrl,
     audioUrl: req.body.audioUrl,
 }       
