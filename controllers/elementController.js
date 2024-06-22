@@ -6,7 +6,7 @@ exports.addElement = async(req, res) => {
         
 let data = {
     level: req.body.level,
-    question: req.body.questions,
+    question: req.body.question,
     solution1: req.body.solution1,
     solution2: req.body.solution2,
     solution3: req.body.solution3,
@@ -18,7 +18,13 @@ let data = {
 }       
 
 const elem = new Element(data)
-elem.save();
+elem.save((err) => {
+    if (err) {
+      console.error('Error saving document:', err);
+    } else {
+      console.log('Document saved successfully');
+    }
+  });
 
 return res.status(200).send({message: "Creation reussi"});
 

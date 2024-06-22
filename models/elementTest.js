@@ -50,7 +50,6 @@ const Element = new mongoose.Schema({
     audioUrl: {
       type: String, 
       default:null,
-      required:false
     },
     numero: {
       type:Number
