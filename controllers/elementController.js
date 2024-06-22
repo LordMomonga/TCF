@@ -7,16 +7,19 @@ exports.addElement = async(req, res) => {
 let data = {
     level: req.body.level,
     question: req.body.questions,
-    solutions: req.body.solutions,
+    solution1: req.body.solution1,
+    solution2: req.body.solution2,
+    solution3: req.body.solution3,
+
+    solution4: req.body.solution4,
+
     response: req.body.response,
-    type: req.body.type,
+    typeElement: req.body.type,
     imageUrl: req.body.imageUrl,
     audioUrl: req.body.audioUrl,
     numero: req.body.numero
 }       
-if(data.solutions.length !== 4){
-    return res.status(400).json({error: 'vous devez avoir 4 questions exactement'})
-}
+
 const element = new Element(data)
 element.save();
 return res.status(200).send({message: "Created Element"});

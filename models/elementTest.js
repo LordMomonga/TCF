@@ -10,12 +10,30 @@ const Element = new mongoose.Schema({
       required:true
     }
     ,
-  solutions:  [
+  solution1:  
         {
           type: String,
           required: true
         }
-      ],
+      ,
+      solution2:  
+        {
+          type: String,
+          required: true
+        }
+      ,
+      solution3:  
+        {
+          type: String,
+          required: true
+        }
+      ,
+      solution4:  
+        {
+          type: String,
+          required: true
+        }
+      ,
     response:{
         type:String,
         required:true
