@@ -49,13 +49,12 @@ const Element = new mongoose.Schema({
     },
     audioUrl: {
       type: String, 
-      default:null
+      default:null,
+      required:false
     },
     numero: {
-      type:Number,
-      default:null
-
-    }
+      type:Number
+   }
 });
 
 module.exports = mongoose.model("Element", Element);       

@@ -19,7 +19,8 @@ let data = {
 
 const element = new Element(data)
 element.save();
-return res.status(200).send({message: "Created Element"});
+
+return res.status(200).send({message: "Creation reussi"});
 
     } catch (error) {
         return res.status(500).send({message: error});
