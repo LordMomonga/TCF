@@ -20,15 +20,24 @@ const Element = new mongoose.Schema({
         type:String,
         required:true
     },
-    type:{
+    typeElement:{
       type:String,
       required:true
     },
 
     imageUrl: {
         type:String,
-        require: true,
+        default:null
+    },
+    audioUrl: {
+      type: String, 
+      default:null
+    },
+    numero: {
+      type:Number,
+      default:null
+
     }
 });
 
-module.exports = mongoose.model("Element", Element);   
+module.exports = mongoose.model("Element", Element);       

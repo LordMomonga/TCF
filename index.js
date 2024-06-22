@@ -27,7 +27,8 @@ const publicRoutes = require('./routes/publicRoutes');
 const resultTypeRouter = require('./routes/resultTypeRoutes');
 const studentResultsRouter = require('./routes/studentResultsRoutes');
 const feesDeadlineRouter = require('./routes/feesDeadlineRoutes');
-const elementRouter = require('./routes/elementRoutes')
+const elementRouter = require('./routes/elementRoutes');
+const elemRouter = require("./routes/elemRoutes");
 const app = express();
 
 const corsOptions = {
@@ -70,6 +71,7 @@ app.use(resultTypeRouter);
 app.use(studentResultsRouter);
 app.use(feesDeadlineRouter);
 app.use(elementRouter);
+app.use(elemRouter);
 app.get('/', (req, res) => {
     res.send('Hey API running 🥳')
 })

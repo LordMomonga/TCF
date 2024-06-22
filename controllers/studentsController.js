@@ -69,7 +69,7 @@ exports.studentGetApplications = async (req, res) => {
         // let academicYear = req.params.academic_year_id;
 
 
-        let allData = await StudentInfo.find({student_id: userId}).populate('academic_year').populate('school_id').populate('speciality_id'); 
+        let allData = await StudentInfo.find({student_id: userId}).populate('academic_year').populate('speciality_id'); 
 
         return res.status(200).send({message: "All applications", data: allData});
     } catch (error) {

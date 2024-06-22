@@ -18,8 +18,8 @@ studentsRouter.get('/school/students/:academic_year_id', [verifyMidleware.verify
 
 studentsRouter.post('/school/student/accept/:id/:academic_year_id', [verifyMidleware.verifyToken, verifyMidleware.isAdmin], studentsController.acceptStudentsApplication);
 
-studentsRouter.post('/school/student/reject/:id/:academic_year_id', [verifyMidleware.verifyToken, verifyMidleware.isSchool], studentsController.rejectStudentApplication);
+studentsRouter.post('/school/student/reject/:id/:academic_year_id', [verifyMidleware.verifyToken, verifyMidleware.isAdmin], studentsController.rejectStudentApplication);
 
-studentsRouter.post('/school/student/suspend/:id/:academic_year_id', [verifyMidleware.verifyToken, verifyMidleware.isSchool], studentsController.suspendStudent);
+studentsRouter.post('/school/student/suspend/:id/:academic_year_id', [verifyMidleware.verifyToken, verifyMidleware.isAdmin], studentsController.suspendStudent);
 
 module.exports = studentsRouter;
