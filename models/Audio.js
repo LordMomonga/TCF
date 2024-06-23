@@ -6,7 +6,19 @@ const Audio = new mongoose.Schema({
     required:true
 
     },
-    audioUrl:{
+    utilisateur_id: {
+        type: mongoose.Types.ObjectId,
+        ref: "User"
+    },
+    audioUrl1:{
+        type:String,
+        required: true
+    },
+    audioUrl2:{
+        type:String,
+        required: true
+    },
+    audioUrl3:{
         type:String,
         required: true
     }
