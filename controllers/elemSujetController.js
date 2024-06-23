@@ -35,10 +35,10 @@ exports.getSujetExpressionEcrite = async(req, res) =>{
         const selectedSubjects3 = shuffledSubjects3.slice(0, 1);
 
 
-const allData = [
+const allData = {
     selectedSubjects1,
     selectedSubjects2,
-    selectedSubjects3]
+    selectedSubjects3}
 
 return res.status(200).send({message: "statut find", data: allData });
         
@@ -61,10 +61,10 @@ exports.getSujetExpressionOrale = async(req, res) =>{
         const selectedSubjects2 = shuffledSubjects2.slice(0, 1);
         const selectedSubjects3 = shuffledSubjects3.slice(0, 1);
 
-        const allData = [
+        const allData = {
             selectedSubjects1,
             selectedSubjects2,
-            selectedSubjects3]
+            selectedSubjects3}
         
         return res.status(200).send({message: "statut find", data: allData });
         
