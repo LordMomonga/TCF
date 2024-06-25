@@ -67,14 +67,14 @@ exports.getComprehensionEcrite = async(req, res) =>{
         const selectListeningC1 = shuffledlisteningC1.slice(0, 4)
         const selectListeningC2 = shuffledlisteningC2.slice(0, 4)
 
-        const allData = [
+        const allData = {
             selectListeningA1,
             selectListeningA2,
             selectListeningB1,
             selectListeningB2,
             selectListeningC1,
             selectListeningC2
-        ]
+        }
         
         return res.status(200).send({message: "statut find", data: allData });
 
@@ -108,14 +108,14 @@ exports.getComprehensionOrale = async(req, res) =>{
         const selectListeningC1 = shuffledspeakingC1.slice(0, 8)
         const selectListeningC2 = shuffledspeakingC2.slice(0, 6)
 
-        const allData = [
+        const allData = {
             selectListeningA1,
             selectListeningA2,
             selectListeningB1,
             selectListeningB2,
             selectListeningC1,
             selectListeningC2
-        ]
+        }
         return res.status(200).send({message: "statut find", data: allData });
 
     } catch (error) {
