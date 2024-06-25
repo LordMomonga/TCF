@@ -116,10 +116,10 @@ exports.getComprehensionOrale = async(req, res) =>{
             selectListeningC1,
             selectListeningC2
         }
-        return res.status(200).send({message: "statut find", data: allData });
+        return res.status(200).send({message: "statut find", data: allData })
 
     } catch (error) {
-        return res.status(500).send({message: "error"});
+        return res.status(500).send({message: "error"})
 
     }
 }
