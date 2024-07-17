@@ -87,12 +87,12 @@ exports.getComprehensionEcrite = async(req, res) =>{
 exports.getComprehensionOrale = async(req, res) =>{
     try {
         
-        const speakingC1Promise = Element.find({ typeElement: "comprehension orale", level: "C1" }).populate();
-        const speakingC2Promise = Element.find({ typeElement: "comprehension orale", level: "C2" }).populate();
-        const speakingB1Promise = Element.find({ typeElement: "comprehension orale", level: "B1" }).populate();
-        const speakingB2Promise = Element.find({ typeElement: "comprehension orale", level: "B2" }).populate();
-        const speakingA1Promise = Element.find({ typeElement: "comprehension orale", level: "A1" }).populate();
-        const speakingA2Promise = Element.find({ typeElement: "comprehension orale", level: "A2" }).populate();
+        const speakingC1Promise = Element.find({ typeElement: "comprehension orale", level: "C1" });
+        const speakingC2Promise = Element.find({ typeElement: "comprehension orale", level: "C2" });
+        const speakingB1Promise = Element.find({ typeElement: "comprehension orale", level: "B1" });
+        const speakingB2Promise = Element.find({ typeElement: "comprehension orale", level: "B2" });
+        const speakingA1Promise = Element.find({ typeElement: "comprehension orale", level: "A1" });
+        const speakingA2Promise = Element.find({ typeElement: "comprehension orale", level: "A2" });
 
         const [
             speakingC1,
