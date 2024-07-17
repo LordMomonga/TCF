@@ -1,31 +1,25 @@
 const mongoose = require('mongoose');
 
-const Audio = new mongoose.Schema({
-   niveau:{
-    type: String,
-    default:null
-   }, 
+const Ecrit = new mongoose.Schema({
+   
     utilisateur_id: {
         type: mongoose.Types.ObjectId,
         ref: "User"
     },
-    audioUrl1:{
+    
+    contenu1:{
         type:String,
         required: true
     },
-    audioUrl2:{
+    contenu2:{
         type:String,
         required: true
     },
-    audioUrl3:{
+    contenu3:{
         type:String,
         required: true
-    },
-    Solution:{
-        type:String,
-        default: null
     }
 
 })
 
-module.exports = mongoose.model('Audio', Audio);
+module.exports = mongoose.model('Ecrit', Ecrit);

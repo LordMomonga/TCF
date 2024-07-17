@@ -5,7 +5,7 @@ const verifyMidleware = require("../midlewares/authjwt");
 const elementRouter = express.Router();
 
 elementRouter.post('/school/element', [verifyMidleware.verifyToken, verifyMidleware.isAdmin], elementController.addElement);
-elementRouter.get('school/select/compe', [verifyMidleware.verifyToken, verifyMidleware.isUser],elementController.getComprehensionEcrite);
-elementRouter.get('school/select/compo', [verifyMidleware.verifyToken, verifyMidleware.isUser],elementController.getComprehensionOrale);
+elementRouter.get('/school/select/compe', [verifyMidleware.verifyToken, verifyMidleware.isUser],elementController.getComprehensionEcrite);
+elementRouter.get('/school/select/compo', [verifyMidleware.verifyToken, verifyMidleware.isUser],elementController.getComprehensionOrale);
 
 module.exports = elementRouter;

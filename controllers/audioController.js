@@ -2,10 +2,13 @@ const Audio = require('../models/Audio');
 
 exports.addAudio = async(req, res) => {
     try {
+        
         let data = {
             nomAudio: req.body.nomAudio,
-            audioUrl: req.body.audioUrl
-        }
+            audioUrl1: req.body.audioUrl1,
+            audioUrl2: req.body.audioUrl2,
+            audioUrl3: req.body.audioUrl3
+        } 
         
         const audio = new Audio(data);
         audio.save()

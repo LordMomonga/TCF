@@ -26,6 +26,16 @@ reading_id:{
     type: mongoose.Types.ObjectId,
     default:null,
     ref:"ReadingSolution"
+},
+
+correctionAudio:{
+    type:String,
+    default:null
+
+},
+correctionEcrit:{
+    type: String, 
+    default: null,
 }
 })
 module.exports = mongoose.model('Sol', Sol);
