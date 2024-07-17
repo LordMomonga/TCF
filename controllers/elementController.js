@@ -94,6 +94,15 @@ exports.getComprehensionOrale = async(req, res) =>{
         const speakingA1 = Element.find({typeElement: "comprehension orale", level: "A1"}).populate()
         const speakingA2 = Element.find({typeElement: "comprehension orale", level: "A2"}).populate()
 
+        const [
+            speakingC1,
+            speakingC2,
+            speakingB1,
+            speakingB2,
+            speakingA1,
+            speakingA2
+        ] = await Promise.all([speakingC1Promise, speakingC2Promise, speakingB1Promise, speakingB2Promise, speakingA1Promise, speakingA2Promise]);
+
         const shuffledspeakingC2 = speakingC2.sort(() => 0.5 - Math.random());
         const shuffledspeakingC1 = speakingC1.sort(() => 0.5 - Math.random());
         const shuffledspeakingB1 = speakingB1.sort(() => 0.5 - Math.random());
@@ -101,12 +110,12 @@ exports.getComprehensionOrale = async(req, res) =>{
         const shuffledspeakingA2 = speakingA2.sort(() => 0.5 - Math.random());
         const shuffledspeakingA1 = speakingA1.sort(() => 0.5 - Math.random());
 
-        const selectListeningA1 = shuffledspeakingA1.slice(0, 5)
-        const selectListeningA2 = shuffledspeakingA2.slice(0, 10)
-        const selectListeningB1 = shuffledspeakingB1.slice(0, 5)
-        const selectListeningB2 = shuffledspeakingB2.slice(0, 5)
-        const selectListeningC1 = shuffledspeakingC1.slice(0, 8)
-        const selectListeningC2 = shuffledspeakingC2.slice(0, 6)
+        const selectListeningA1 = shuffledspeakingA1.slice(0, 5);
+        const selectListeningA2 = shuffledspeakingA2.slice(0, 10);
+        const selectListeningB1 = shuffledspeakingB1.slice(0, 5);
+        const selectListeningB2 = shuffledspeakingB2.slice(0, 5);
+        const selectListeningC1 = shuffledspeakingC1.slice(0, 8);
+        const selectListeningC2 = shuffledspeakingC2.slice(0, 6);
 
         const allData = {
             selectListeningA1,
@@ -115,9 +124,9 @@ exports.getComprehensionOrale = async(req, res) =>{
             selectListeningB2,
             selectListeningC1,
             selectListeningC2
-        }
-        return res.status(200).send({message: "statut find", data: allData })
+        };
 
+        return res.status(200).send({ message: "statut find", data: allData });
     } catch (error) {
         return res.status(500).send({message: "error"})
 
