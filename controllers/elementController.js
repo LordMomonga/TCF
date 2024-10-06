@@ -17,8 +17,8 @@ let data = {
     audioUrl: req.body.audioUrl,
 }       
 
-const elem = new Element(data)
-elem.save((err) => {
+let elem = new Element(data)
+await elem.save((err) => {
     if (err) {
       console.error('Error saving document:', err);
     } else {
