@@ -1,10 +1,11 @@
 const Audio = require('../models/Audio');
 
 exports.addAudio = async(req, res) => {
+    const user_id = req.params.id;
     try {
         
         let data = {
-            nomAudio: req.body.nomAudio,
+            utilisateur_id:user_id,
             audioUrl1: req.body.audioUrl1,
             audioUrl2: req.body.audioUrl2,
             audioUrl3: req.body.audioUrl3,
