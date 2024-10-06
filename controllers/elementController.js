@@ -17,14 +17,8 @@ let data = {
     audioUrl: req.body.audioUrl,
 }       
 
-let elem = new Element(data)
-await elem.save((err) => {
-    if (err) {
-      console.error('Error saving document:', err);
-    } else {
-      console.log('Document saved successfully');
-    }
-  });
+    let elem = new Element(data)
+    await elem.save();
 
 return res.status(200).send({message: "Creation reussi"});
 
