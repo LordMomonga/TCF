@@ -3,6 +3,7 @@ const Audio = require('../models/Audio');
 exports.addAudio = async(req, res) => {
     const user_id = req.params.id;
     try {
+        console.log('Received data:', req.body); 
         
         let data = {
             utilisateur_id:user_id,

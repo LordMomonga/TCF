@@ -2,7 +2,7 @@ const Element = require('../models/elementTest');
 exports.addElement = async(req, res) => {
     try {
 
-        
+        console.log('Received data:', req.body);
         
 let data = {
     level: req.body.level,

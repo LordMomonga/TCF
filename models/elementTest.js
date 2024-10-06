@@ -52,7 +52,8 @@ const Element = new mongoose.Schema({
       default:null,
     },
     numero: {
-      type:Number
+      type:Number,
+      default:null,
    }
 });
 
