@@ -24,7 +24,19 @@ const Audio = new mongoose.Schema({
     Solution:{
         type:String,
         default: null
-    }
+    },
+    contenu1_id:{
+        type: mongoose.Types.ObjectId,
+                 ref: "ElemSujet"
+    }, 
+    contenu2_id:{
+        type: mongoose.Types.ObjectId,
+        ref: "ElemSujet"
+    }, 
+    contenu3_id:{
+        type: mongoose.Types.ObjectId,
+         ref: "ElemSujet"
+    }, 
 
 })
 

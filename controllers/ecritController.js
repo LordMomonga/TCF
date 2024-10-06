@@ -10,7 +10,9 @@ exports.addEcriture = async(req, res) =>{
             contenu1: req.body.contenu1,
             contenu2: req.body.contenu2,
             contenu3: req.body.contenu3,
-
+            contenu1_id:req.body.contenu1_id,
+            contenu2_id:req.body.contenu2_id,
+            contenu3_id:req.body.contenu3_id
   
         }
 

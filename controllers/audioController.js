@@ -7,7 +7,10 @@ exports.addAudio = async(req, res) => {
             nomAudio: req.body.nomAudio,
             audioUrl1: req.body.audioUrl1,
             audioUrl2: req.body.audioUrl2,
-            audioUrl3: req.body.audioUrl3
+            audioUrl3: req.body.audioUrl3,
+            contenu1_id:req.body.contenu1_id,
+            contenu2_id:req.body.contenu2_id,
+            contenu3_id:req.body.contenu3_id
         } 
         
         const audio = new Audio(data);
