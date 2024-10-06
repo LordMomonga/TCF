@@ -14,8 +14,8 @@ exports.addAudio = async(req, res) => {
             contenu3_id:req.body.contenu3_id
         } 
         
-        const audio = new Audio(data);
-        audio.save()
+         const audio = new Audio(data);
+         await  audio.save()
         return res.status(200).send({message: "creation réussi"});
 
         
