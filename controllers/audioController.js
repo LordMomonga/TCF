@@ -3,20 +3,22 @@ const Audio = require('../models/Audio');
 exports.addAudio = async(req, res) => {
     const user_id = req.params.id;
     try {
-        console.log('Received data:', req.body); 
-        
+        console.log('Received data:',req.userId); 
+
         let data = {
-            utilisateur_id:user_id,
-            audioUrl1: req.body.audioUrl1,
-            audioUrl2: req.body.audioUrl2,
-            audioUrl3: req.body.audioUrl3,
+            utilisateur_id:req.userId,
+            audioUrl1: req.body.audioUrl,
+            audioUrl2: req.body.audioUrl1,
+            audioUrl3: req.body.audioUrl2,
             contenu1_id:req.body.contenu1_id,
             contenu2_id:req.body.contenu2_id,
             contenu3_id:req.body.contenu3_id
         } 
+        console.log(data);
         
          let audio = new Audio(data);
          await audio.save();
+
         return res.status(200).send({message: "creation réussi"});
 
         

@@ -28,11 +28,12 @@ exports.addEcriture = async(req, res) =>{
     }
 }
 exports.getEcriture = async(req, res) => {
-    try{
+    try {
+        let allData = await Ecrit.find() 
+        return res.status(200).send({message: "All assignments", data: allData});
 
-
-    }catch(error)
-    {
+    } catch (error) {
+        return res.status(500).send({message: error});
 
     }
 
