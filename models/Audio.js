@@ -38,6 +38,6 @@ const Audio = new mongoose.Schema({
          ref: "ElemSujet"
     }, 
 
-})
+}, { timestamps: true })
 
 module.exports = mongoose.model('Audio', Audio);
