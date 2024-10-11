@@ -1,5 +1,7 @@
 const Audio = require('../models/Audio');
 
+
+
 exports.addAudio = async(req, res) => {
     const user_id = req.params.id;
     try {
@@ -43,12 +45,11 @@ exports.getOneAudio = async(req, res) => {
     try {
         let audioId = req.body.elementID;
         let elementID = req.query.elementID; 
-        console.log(req.params.id);    
 
     let data = await Audio.findOne({_id: req.params.id}).populate('utilisateur_id').populate('contenu1_id').populate('contenu2_id').populate('contenu3_id');
 
   
-    
+     
     return res.status(200).send({message: " Applications", data: data});
 
     } catch (error) {
@@ -57,4 +58,47 @@ exports.getOneAudio = async(req, res) => {
     }
     
 
+}
+exports.updateAudio = async (req,res) => {
+  
+    
+    try {
+        // console.log('UPDATE REQ', req.body);
+        const commentaire = req.body.commentaire
+    const Audio_id = req.body._id
+    const note = req.body.note
+    const pend = req.body.status
+    console.log(Audio_id);
+    console.log(commentaire, pend);
+      
+        await Audio.updateOne(
+            {"_id": Audio_id}, 
+            
+            { 
+            $set: {commentaire, commentaire},
+            $set: {note, note},
+            
+            
+
+             }
+    );
+        
+        return res.status(200).send({message: "Audio Updated"});
+    } catch (error) {
+        return res.status(500).send({message: error});
+    }
+}
+
+exports.selAudioStudent = async (req, res) => {
+
+    try {
+        let studentId = req.userId;
+        console.log("bien ou bien");
+        
+        let data = await Audio.find({utilisateur_id: studentId}).populate('contenu1_id').populate('contenu2_id').populate('contenu3_id'); 
+       
+        return res.status(200).send({message: " Applications", data: data});
+    } catch (error) {
+        return res.status(500).send({message: error});
+    }
 }

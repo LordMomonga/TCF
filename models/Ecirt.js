@@ -19,6 +19,14 @@ const Ecrit = new mongoose.Schema({
         type:String,
         required: true
     }, 
+    note:{
+        type:String,
+        default:null
+    }, 
+    stat:{
+        type:String,
+        default:"pending"
+    },
     contenu1_id:{
         type: mongoose.Types.ObjectId,
                  ref: "ElemSujet"
@@ -31,6 +39,10 @@ const Ecrit = new mongoose.Schema({
         type: mongoose.Types.ObjectId,
          ref: "ElemSujet"
     }, 
+    commentaire:{
+        type:String,
+        default:null,
+    },
 
 
 }, { timestamps: true })

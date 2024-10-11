@@ -5,6 +5,15 @@ const Audio = new mongoose.Schema({
     type: String,
     default:null
    }, 
+   note:{
+    type:String,
+    default:null
+},
+commentaire:{
+    type:String,
+    default:null
+},
+
     utilisateur_id: {
         type: mongoose.Types.ObjectId,
         ref: "User"
