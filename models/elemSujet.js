@@ -16,7 +16,7 @@ titre:{
 },
 contenu:{
     type:String,
-    required:true,
+    default:null,
 },
 document1:{
     type:String,
