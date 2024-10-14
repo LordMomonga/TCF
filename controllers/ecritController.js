@@ -59,10 +59,15 @@ exports.getOneEcriture = async(req, res) =>{
             const Ecrit_ID = req.body._id
             const note = req.body.note
             const pend = "corrected"
-            await Ecrit.updateOne(  {"_id": Ecrit_ID},   { 
-                $set: {commentaire, commentaire},
-                 $set: {note, note},
-                 $set: {stat, pend}
+            console.log(Ecrit_ID, commentaire, note);
+            
+            await Ecrit.updateOne( {"_id": Ecrit_ID},   
+                { 
+                    $set: { 
+                        commentaire: commentaire,
+                        note: note,
+                        stat: pend 
+                    }
                  });
     
             return res.status(200).send({message: "Ecrit  Updated"});

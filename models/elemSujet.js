@@ -17,7 +17,15 @@ titre:{
 contenu:{
     type:String,
     required:true,
-}
+},
+document1:{
+    type:String,
+    default:null,
+},
+document2:{
+    type:String,
+    default:null,
+},
 
 })
 module.exports = mongoose.model("ElemSujet", ElemSujet);   

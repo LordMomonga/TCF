@@ -65,23 +65,24 @@ exports.updateAudio = async (req,res) => {
     try {
         // console.log('UPDATE REQ', req.body);
         const commentaire = req.body.commentaire
-    const Audio_id = req.body._id
+    const Audio_id = req.body._idAudio
     const note = req.body.note
     const pend = req.body.status
     console.log(Audio_id);
-    console.log(commentaire, pend);
+    console.log(commentaire, note);
       
         await Audio.updateOne(
             {"_id": Audio_id}, 
             
             { 
-            $set: {commentaire, commentaire},
-            $set: {note, note},
-            
-            
-
+                $set: { 
+                    commentaire: commentaire,
+                    note: note,
+                    stat: pend 
+                }
              }
     );
+        console.log("comme tu vois");
         
         return res.status(200).send({message: "Audio Updated"});
     } catch (error) {

@@ -6,7 +6,9 @@ exports.addElem = async(req, res) => {
             TypeElement: req.body.TypeElement,
             NumeroSujet: req.body.NumeroSujet,
             titre: req.body.titre,
-            contenu: req.body.contenu,   
+            contenu: req.body.contenu, 
+            document1:req.body.document1,
+            document2: req.body.document2  
         }
 
         const elem = new ElemSujet(data);
