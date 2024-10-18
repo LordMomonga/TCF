@@ -40,13 +40,14 @@ exports.getElement = async(req, res) =>{
 }
 exports.getComprehensionEcrite = async(req, res) =>{
     try {
-        const listeningC1 = Element.find({typeElement: "comprehension ecrite", level: "C1"}).populate()
-        const listeningC2 = Element.find({typeElement: "comprehension ecrite", level: "C2"}).populate()
-        const listeningB1 = Element.find({typeElement: "comprehension ecrite", level: "B1"}).populate()
-        const listeningB2 = Element.find({typeElement: "comprehension ecrite", level: "B2"}).populate()
-        const listeningA1 = Element.find({typeElement: "comprehension ecrite", level: "A1"}).populate()
-        const listeningA2 = Element.find({typeElement: "comprehension ecrite", level: "A2"}).populate()
-
+        
+        const listeningC1 = await Element.find({typeElement: "comprehension ecrite", level: "C1"}).populate()
+        const listeningC2 = await Element.find({typeElement: "comprehension ecrite", level: "C2"}).populate()
+        const listeningB1 = await Element.find({typeElement: "comprehension ecrite", level: "B1"}).populate()
+        const listeningB2 = await Element.find({typeElement: "comprehension ecrite", level: "B2"}).populate()
+        const listeningA1 = await Element.find({typeElement: "comprehension ecrite", level: "A1"}).populate()
+        const listeningA2 = await Element.find({typeElement: "comprehension ecrite", level: "A2"}).populate()
+        
         const shuffledlisteningC2 = listeningC2.sort(() => 0.5 - Math.random());
         const shuffledlisteningC1 = listeningC1.sort(() => 0.5 - Math.random());
         const shuffledlisteningB1 = listeningB1.sort(() => 0.5 - Math.random());
@@ -60,6 +61,7 @@ exports.getComprehensionEcrite = async(req, res) =>{
         const selectListeningB2 = shuffledlisteningB2.slice(0, 4)
         const selectListeningC1 = shuffledlisteningC1.slice(0, 4)
         const selectListeningC2 = shuffledlisteningC2.slice(0, 4)
+        console.log( selectListeningC2, "ca ne marche pas");
 
         const allData = {
             selectListeningA1,
@@ -81,12 +83,12 @@ exports.getComprehensionEcrite = async(req, res) =>{
 exports.getComprehensionOrale = async(req, res) =>{
     try {
         
-        const speakingC1Promise = Element.find({ typeElement: "comprehension orale", level: "C1" });
-        const speakingC2Promise = Element.find({ typeElement: "comprehension orale", level: "C2" });
-        const speakingB1Promise = Element.find({ typeElement: "comprehension orale", level: "B1" });
-        const speakingB2Promise = Element.find({ typeElement: "comprehension orale", level: "B2" });
-        const speakingA1Promise = Element.find({ typeElement: "comprehension orale", level: "A1" });
-        const speakingA2Promise = Element.find({ typeElement: "comprehension orale", level: "A2" });
+        const speakingC1Promise = await Element.find({ typeElement: "comprehension orale", level: "C1" });
+        const speakingC2Promise = await Element.find({ typeElement: "comprehension orale", level: "C2" });
+        const speakingB1Promise = await Element.find({ typeElement: "comprehension orale", level: "B1" });
+        const speakingB2Promise = await Element.find({ typeElement: "comprehension orale", level: "B2" });
+        const speakingA1Promise = await Element.find({ typeElement: "comprehension orale", level: "A1" });
+        const speakingA2Promise = await Element.find({ typeElement: "comprehension orale", level: "A2" });
 
         const [
             speakingC1,
