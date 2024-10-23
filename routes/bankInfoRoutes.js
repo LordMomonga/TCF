@@ -7,7 +7,7 @@ const verifyRoleMidleware = require("../midlewares/authjwt");
 const bankInfoRouter = express.Router();
 
 
-bankInfoRouter.post('/school/bank-info',[verifyRoleMidleware.verifyToken, verifyRoleMidleware.isSchool], bankInfoController.createBankInfo);
+bankInfoRouter.post('/school/bank-info',[verifyRoleMidleware.verifyToken, verifyRoleMidleware.isAdmin], bankInfoController.createBankInfo);
 
 
 bankInfoRouter.get('/school/bank-infos',[verifyRoleMidleware.verifyToken, verifyRoleMidleware.isSchool], bankInfoController.getBankInfos);
