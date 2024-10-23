@@ -7,17 +7,16 @@ exports.submitReceipt = async(req,res) => {
         console.log('CREATE RECEIPTS', req.body);
 
         let studentId = req.userId;
-        let accademicYear = req.params.academic_year_id;
 
 
-
+        
         if(req.body.file_url.length < 2){
             return res.status(400).send({message: "You need to select a recipt confirmation file"})
         }
 
         // CHECK IF STUDENT IS PART OF SCHOOL FOR ACADEMIC YEAR
 
-        let check1 = await StudentInfo.findOne({ academic_year: accademicYear});
+        let check1 = await StudentInfo.findOne({ student_id: studentId});
 
         if(!check1) {
             console.log('Failed check one')
@@ -35,8 +34,9 @@ exports.submitReceipt = async(req,res) => {
             ...req.body,
             speciality: check1.speciality_id,
             student_id: studentId,
-            academic_year: accademicYear
         };
+        console.log(data, "tout ce qui me faut ");
+        
 
         let receipt = new FeesReceipt(data);
 
@@ -54,9 +54,8 @@ exports.studentGetReceipts= async(req,res) => {
 
         console.log('STUDENT GET RECEIPTS')
         let studentId = req.userId;
-        let accademicYear = req.params.academic_year_id;
 
-        let allReceipts = await FeesReceipt.find({student_id: studentId, academic_year: accademicYear}).populate('school_id').populate('speciality').populate('BankInfo');
+        let allReceipts = await FeesReceipt.find({student_id: studentId}).populate('school_id').populate('speciality').populate('BankInfo');
 
         return res.status(200).send({message: "All student receipts", data: allReceipts});
 

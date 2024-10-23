@@ -28,7 +28,7 @@ const FeesReceipt = new mongoose.Schema({
     },
     academic_year: {
         type: String,
-        required: true,
+        default: null,
         ref: "AccademicYear"
     },
 }, { timestamps: true });

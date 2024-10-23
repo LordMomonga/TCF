@@ -35,18 +35,16 @@ exports.getBankInfos = async(req,res) => {
 
 exports.studentGetBankInfos = async(req,res) => {
     try {
-        let studentId = req.userId;
-        let academicYear = req.params.academic_year_id;
+       
 
-        let student = await StudentInfo.findOne({student_id: studentId, academic_year: academicYear})
+        let allData = await BankInfo.find();
+        console.log("all", allData);
 
-        if(!student) {
-            return res.status(400).send({message: "Not part of any school"});
-        }
+        return res.status(200).send({message: "All Bank Infos", data: allData});
+        
+      
 
-        let allData = await BankInfo.find({school_id: student.school_id});
-
-        return res.status(200).send({message: "School Bank Infos", data: allData});
+    
         
     } catch (error) {
         return res.status(500).send({message: error});

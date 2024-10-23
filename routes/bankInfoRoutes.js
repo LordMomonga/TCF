@@ -10,14 +10,14 @@ const bankInfoRouter = express.Router();
 bankInfoRouter.post('/school/bank-info',[verifyRoleMidleware.verifyToken, verifyRoleMidleware.isAdmin], bankInfoController.createBankInfo);
 
 
-bankInfoRouter.get('/school/bank-infos',[verifyRoleMidleware.verifyToken, verifyRoleMidleware.isSchool], bankInfoController.getBankInfos);
+bankInfoRouter.get('/school/bank-infos',[verifyRoleMidleware.verifyToken, verifyRoleMidleware.isAdmin], bankInfoController.getBankInfos);
 
-bankInfoRouter.get('/student/bank-infos/:academic_year_id',[verifyRoleMidleware.verifyToken, verifyRoleMidleware.isStudent], bankInfoController.studentGetBankInfos);
+bankInfoRouter.get('/student/bank-infos/:academic_year_id',[verifyRoleMidleware.verifyToken, verifyRoleMidleware.isUser], bankInfoController.studentGetBankInfos);
 
 
-bankInfoRouter.post('/school/bank-info/:id',[verifyRoleMidleware.verifyToken, verifyRoleMidleware.isSchool], bankInfoController.updateBankInfo);
+bankInfoRouter.post('/school/bank-info/:id',[verifyRoleMidleware.verifyToken, verifyRoleMidleware.isAdmin], bankInfoController.updateBankInfo);
 
-bankInfoRouter.delete('/school/bank-info/:id',[verifyRoleMidleware.verifyToken, verifyRoleMidleware.isSchool], bankInfoController.deleteBankInfo);
+bankInfoRouter.delete('/school/bank-info/:id',[verifyRoleMidleware.verifyToken, verifyRoleMidleware.isAdmin], bankInfoController.deleteBankInfo);
 
 
 module.exports = bankInfoRouter;
