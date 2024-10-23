@@ -69,7 +69,7 @@ exports.schoolGetReceipts = async(req,res) => {
     try {
         let accademicYear = req.params.academic_year_id;
 
-        let allReceipts = await FeesReceipt.find({ academic_year: accademicYear}).populate('student_id').populate('speciality').populate('account');
+        let allReceipts = await FeesReceipt.find().populate('student_id').populate('speciality').populate('account');
 
         console.log('ALL RECEIIPTS', allReceipts);
 
