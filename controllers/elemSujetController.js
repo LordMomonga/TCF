@@ -1,4 +1,5 @@
 const ElemSujet = require('../models/elemSujet');
+const StudentInfo = require("../models/StudentInfo")
 
 exports.addElem = async(req, res) => {
     try {
@@ -8,7 +9,9 @@ exports.addElem = async(req, res) => {
             titre: req.body.titre,
             contenu: req.body.contenu, 
             document1:req.body.document1,
-            document2: req.body.document2  
+            document2: req.body.document2,
+            specialitie: req.body.specialitie,
+
         }
 
         const elem = new ElemSujet(data);
@@ -23,10 +26,22 @@ exports.addElem = async(req, res) => {
 
 
 exports.getSujetExpressionEcrite = async(req, res) =>{
+
+    const specName = await StudentInfo.find({student_id: req.userId}).populate("speciality_id")
+    const spec = specName[0].speciality_id._id
+    const specN = specName[0].speciality_id.name
+
+    if(!spec) return
+    else {
+        if(!specN) {
+            spec = "TCF"  
+        }
+    }
+
     try {
-        const expressionEcriteSujet1 = await ElemSujet.find( {TypeElement: "expression ecrite", NumeroSujet: 'sujet1'}).populate();
-        const expressionEcriteSujet2 = await ElemSujet.find( {TypeElement: "expression ecrite", NumeroSujet: 'sujet2'}).populate();
-        const expressionEcriteSujet3 = await ElemSujet.find( {TypeElement: "expression ecrite", NumeroSujet: 'sujet3'}).populate();
+        const expressionEcriteSujet1 = await ElemSujet.find( {TypeElement: "expression ecrite", NumeroSujet: 'sujet1', specialitie: spec}).populate();
+        const expressionEcriteSujet2 = await ElemSujet.find( {TypeElement: "expression ecrite", NumeroSujet: 'sujet2', specialitie: spec}).populate();
+        const expressionEcriteSujet3 = await ElemSujet.find( {TypeElement: "expression ecrite", NumeroSujet: 'sujet3', specialitie: spec}).populate();
 
         const shuffledSubjects1 = expressionEcriteSujet1.sort(() => 0.5 - Math.random());
         const shuffledSubjects2 = expressionEcriteSujet2.sort(() => 0.5 - Math.random());
@@ -50,10 +65,21 @@ return res.status(200).send({message: "statut find", data: allData });
     }
 }
 exports.getSujetExpressionOrale = async(req, res) =>{
+    const specName = await StudentInfo.find({student_id: req.userId}).populate("speciality_id")
+    const spec = specName[0].speciality_id._id
+    const specN = specName[0].speciality_id.name
+
+    if(!spec) return
+    else {
+        if(!specN) {
+            spec = "TCF"  
+        }
+    }
+
     try {
-        const expressionOraleSujet1 = await ElemSujet.find( {TypeElement: "expression orale", NumeroSujet: 'sujet1'}).populate();
-        const expressionOraleSujet2 = await ElemSujet.find( {TypeElement: "expression orale", NumeroSujet: 'sujet2'}).populate();
-        const expressionOraleSujet3 = await ElemSujet.find( {TypeElement: "expression orale", NumeroSujet: 'sujet3'}).populate();
+        const expressionOraleSujet1 = await ElemSujet.find( {TypeElement: "expression orale", NumeroSujet: 'sujet1', specialitie: spec}).populate();
+        const expressionOraleSujet2 = await ElemSujet.find( {TypeElement: "expression orale", NumeroSujet: 'sujet2', specialitie: spec}).populate();
+        const expressionOraleSujet3 = await ElemSujet.find( {TypeElement: "expression orale", NumeroSujet: 'sujet3', specialitie: spec}).populate();
 
         const shuffledSubjects1 = expressionOraleSujet1.sort(() => 0.5 - Math.random());
         const shuffledSubjects2 = expressionOraleSujet2.sort(() => 0.5 - Math.random());

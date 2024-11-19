@@ -54,7 +54,13 @@ const Element = new mongoose.Schema({
     numero: {
       type:Number,
       default:null,
-   }
+   },
+   specialitie: {
+    type: mongoose.Types.ObjectId,
+    default:null,
+    ref: 'Speciality'
+
+  }
 });
 
 module.exports = mongoose.model("Element", Element);       

@@ -26,6 +26,12 @@ document2:{
     type:String,
     default:null,
 },
+   specialitie: {
+    type: mongoose.Types.ObjectId,
+    default:null,
+    ref: 'Speciality'
+
+  }
 
 })
 module.exports = mongoose.model("ElemSujet", ElemSujet);   

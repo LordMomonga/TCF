@@ -1,4 +1,5 @@
 const Element = require('../models/elementTest');
+const StudentInfo = require("../models/StudentInfo")
 exports.addElement = async(req, res) => {
     try {
 
@@ -15,6 +16,7 @@ let data = {
     typeElement: req.body.typeElement,
     imageUrl: req.body.imageUrl,
     audioUrl: req.body.audioUrl,
+    specialitie: req.body.specialitie,
 }       
 
     let elem = new Element(data)
@@ -39,14 +41,27 @@ exports.getElement = async(req, res) =>{
     }
 }
 exports.getComprehensionEcrite = async(req, res) =>{
+
+
+    const specName = await StudentInfo.find({student_id: req.userId}).populate("speciality_id")
+    const spec = specName[0].speciality_id._id
+    const specN = specName[0].speciality_id.name
+
+    if(!spec) return
+    else {
+        if(!specN) {
+            spec = "TCF"  
+        }
+    }
+
     try {
         
-        const listeningC1 = await Element.find({typeElement: "comprehension ecrite", level: "C1"}).populate()
-        const listeningC2 = await Element.find({typeElement: "comprehension ecrite", level: "C2"}).populate()
-        const listeningB1 = await Element.find({typeElement: "comprehension ecrite", level: "B1"}).populate()
-        const listeningB2 = await Element.find({typeElement: "comprehension ecrite", level: "B2"}).populate()
-        const listeningA1 = await Element.find({typeElement: "comprehension ecrite", level: "A1"}).populate()
-        const listeningA2 = await Element.find({typeElement: "comprehension ecrite", level: "A2"}).populate()
+        const listeningC1 = await Element.find({typeElement: "comprehension ecrite", level: "C1", specialitie: spec}).populate()
+        const listeningC2 = await Element.find({typeElement: "comprehension ecrite", level: "C2", specialitie: spec}).populate()
+        const listeningB1 = await Element.find({typeElement: "comprehension ecrite", level: "B1", specialitie: spec}).populate()
+        const listeningB2 = await Element.find({typeElement: "comprehension ecrite", level: "B2", specialitie: spec}).populate()
+        const listeningA1 = await Element.find({typeElement: "comprehension ecrite", level: "A1", specialitie: spec}).populate()
+        const listeningA2 = await Element.find({typeElement: "comprehension ecrite", level: "A2", specialitie: spec}).populate()
         
         const shuffledlisteningC2 = listeningC2.sort(() => 0.5 - Math.random());
         const shuffledlisteningC1 = listeningC1.sort(() => 0.5 - Math.random());
@@ -61,7 +76,6 @@ exports.getComprehensionEcrite = async(req, res) =>{
         const selectListeningB2 = shuffledlisteningB2.slice(0, 6)
         const selectListeningC1 = shuffledlisteningC1.slice(0, 4)
         const selectListeningC2 = shuffledlisteningC2.slice(0, 4)
-        console.log( selectListeningC2, "ca ne marche pas");
 
         const allData = {
             selectListeningA1,
@@ -81,6 +95,18 @@ exports.getComprehensionEcrite = async(req, res) =>{
     }
 }
 exports.getComprehensionOrale = async(req, res) =>{
+    
+ const specName = await StudentInfo.find({student_id: req.userId}).populate("speciality_id")
+    const spec = specName[0].speciality_id._id
+    const specN = specName[0].speciality_id.name
+
+    if(!spec) return
+    else {
+        if(!specN) {
+            spec = "TCF"  
+        }
+    }
+
     try {
         
         const speakingC1Promise = await Element.find({ typeElement: "comprehension orale", level: "C1" });

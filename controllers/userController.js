@@ -16,8 +16,7 @@ const randomString = require('../utils/randomString');
  * @return {Object} this will return an object after registration containing the success message
  **/    
 exports.signup = async (req, res) => {
-    console.log("User Registration");
-    console.log('BODY: ', req.body);
+   
     let data = {
       username: req.body.username,
       email: req.body.email,  
@@ -49,7 +48,6 @@ exports.signup = async (req, res) => {
   };
   
   exports.signin = (req, res) => {
-    console.log("#####login request#########", req.body);
 
     User.findOne({
       email: req.body.email,
@@ -85,7 +83,6 @@ exports.signup = async (req, res) => {
 
 
   exports.updateUser = async (req,res) => {
-    console.log("REQUEST GOT HERE")
     
     try {
       let userId = req.userId;
