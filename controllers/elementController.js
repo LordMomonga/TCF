@@ -1,5 +1,6 @@
 const Element = require('../models/elementTest');
 const StudentInfo = require("../models/StudentInfo")
+const mongoose = require('mongoose');
 exports.addElement = async(req, res) => {
     try {
 
@@ -42,11 +43,11 @@ exports.getElement = async(req, res) =>{
 }
 exports.getComprehensionEcrite = async(req, res) =>{
 
-
+    
     const specName = await StudentInfo.find({student_id: req.userId}).populate("speciality_id")
     const spec = specName[0].speciality_id._id
     const specN = specName[0].speciality_id.name
-
+    console.log(specN)
     if(!spec) return
     else {
         if(!specN) {
@@ -94,6 +95,26 @@ exports.getComprehensionEcrite = async(req, res) =>{
 
     }
 }
+
+const updateSpecialities = async () => {
+    try {
+     
+  
+      // ObjectID par défaut à attribuer
+      const defaultSpecialityId = mongoose.Types.ObjectId("6655e8211fac5930b813dfa9");
+  
+      // Mettre à jour tous les documents sans specialities
+      const result = await Element.updateMany(
+        { specialitie: null }, // Condition : documents sans specialities
+        { $set: { specialitie: defaultSpecialityId } } // Mettre à jour avec la valeur par défaut
+      );
+  
+      console.log(`${result.modifiedCount} documents ont été mis à jour.`);
+    } catch (error) {
+      console.error("Erreur lors de la mise à jour :", error);
+    } 
+  };
+  
 exports.getComprehensionOrale = async(req, res) =>{
     
  const specName = await StudentInfo.find({student_id: req.userId}).populate("speciality_id")
@@ -109,12 +130,12 @@ exports.getComprehensionOrale = async(req, res) =>{
 
     try {
         
-        const speakingC1Promise = await Element.find({ typeElement: "comprehension orale", level: "C1" });
-        const speakingC2Promise = await Element.find({ typeElement: "comprehension orale", level: "C2" });
-        const speakingB1Promise = await Element.find({ typeElement: "comprehension orale", level: "B1" });
-        const speakingB2Promise = await Element.find({ typeElement: "comprehension orale", level: "B2" });
-        const speakingA1Promise = await Element.find({ typeElement: "comprehension orale", level: "A1" });
-        const speakingA2Promise = await Element.find({ typeElement: "comprehension orale", level: "A2" });
+        const speakingC1Promise = await Element.find({ typeElement: "comprehension orale", level: "C1",  specialitie: spec });
+        const speakingC2Promise = await Element.find({ typeElement: "comprehension orale", level: "C2", specialitie: spec });
+        const speakingB1Promise = await Element.find({ typeElement: "comprehension orale", level: "B1", specialitie: spec });
+        const speakingB2Promise = await Element.find({ typeElement: "comprehension orale", level: "B2", specialitie: spec });
+        const speakingA1Promise = await Element.find({ typeElement: "comprehension orale", level: "A1", specialitie: spec });
+        const speakingA2Promise = await Element.find({ typeElement: "comprehension orale", level: "A2", specialitie: spec });
 
         const [
             speakingC1,
