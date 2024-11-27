@@ -1,6 +1,7 @@
 const Element = require('../models/elementTest');
 const StudentInfo = require("../models/StudentInfo")
 const mongoose = require('mongoose');
+
 exports.addElement = async(req, res) => {
     try {
 
@@ -18,8 +19,22 @@ let data = {
     imageUrl: req.body.imageUrl,
     audioUrl: req.body.audioUrl,
     specialitie: req.body.specialitie,
+    options: req.body.options // On ajoute les options ici
+
 }       
 
+ // Validation des options
+ if (data.options && Array.isArray(data.options)) {
+    data.options = data.options.map(option => ({
+        question: option.question || null,
+        answer1: option.answer1 || null,
+        answer2: option.answer2 || null,
+        answer3: option.answer3 || null,
+        answer4: option.answer4 || null,
+        solution: option.solution || null
+    }));
+}
+  // creation de l'élément 
     let elem = new Element(data)
     await elem.save();
 
@@ -47,7 +62,7 @@ exports.getComprehensionEcrite = async(req, res) =>{
     const specName = await StudentInfo.find({student_id: req.userId}).populate("speciality_id")
     const spec = specName[0].speciality_id._id
     const specN = specName[0].speciality_id.name
-    console.log(specN)
+   
     if(!spec) return
     else {
         if(!specN) {

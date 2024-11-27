@@ -55,6 +55,21 @@ const Element = new mongoose.Schema({
       type:Number,
       default:null,
    },
+   index: {
+    type:Number,
+    default:null,
+ },
+ options: [
+  {
+      question: { type: String, required: null },
+      answer1: { type: String, required: null },
+      answer2: { type: String, required: null },
+      answer3: { type: String, required: null },
+      answer4: { type: String, required: null },
+      solution:{type: Number, required: null }
+  }
+],
+
    specialitie: {
     type: mongoose.Types.ObjectId,
     default:null,
