@@ -33,6 +33,8 @@ const audioRouter = require('./routes/audioRoutes')
 const listeningRouter = require('./routes/listeningRoutes')
 const ecritRouter = require('./routes/ecritRoutes');
 const solRouter = require('./routes/solRoutes');
+const resultelementRoute = require('./routes/resultelementRoute');
+
 const app = express();
 
 const corsOptions = {
@@ -80,6 +82,7 @@ app.use(ecritRouter);
 app.use(listeningRouter);
 app.use(audioRouter);
 app.use(solRouter);
+app.use(resultelementRoute);
 app.get('/', (req, res) => {
     res.send('Hey API running 🥳')
 })
