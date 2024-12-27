@@ -6,6 +6,6 @@ const verifyMidleware = require("../midlewares/authjwt");
 const resultelementRoute = express.Router();
 
 resultelementRoute.post('/student/type', [verifyMidleware.verifyToken, verifyMidleware.isUser], ResultController.createResult);
-resultelementRoute.get('/student/type', [verifyMidleware.verifyToken, verifyMidleware.isUser], ResultController.getResultElement);
+resultelementRoute.get('/student/type/:id', [verifyMidleware.verifyToken, verifyMidleware.isUser], ResultController.getResultElement);
 
 module.exports = resultelementRoute;

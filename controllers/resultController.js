@@ -37,11 +37,40 @@ exports.createResult = async(req, res) => {
 exports.getResultElement = async(req, res) => {
     try {   
         userId = req.userId;
+        let testType = req.params.id
 
-        let data = await Resultat.find({utilisateur_id: userId});
+        let data = await Resultat.find({utilisateur_id: userId, typeTest:testType});
 
-        return res.status(200).send({message:'recuperation reussie', data: data})
 
+        // Organiser les données pour le frontend
+        const groupedData = data.reduce((acc, item) => {
+            const key = `${item.typeTest}-${item.niveau}`;
+            if (!acc[key]) {
+                acc[key] = {
+                    typeTest: item.typeTest,
+                    niveau: item.niveau,
+                    count: 0,
+                    totalScore: 0,
+                };
+            }
+            acc[key].count++;
+            acc[key].totalScore += parseFloat(item.score);
+            return acc;
+        }, {});
+
+        const formattedData = Object.values(groupedData).map((item) => ({
+            typeTest: item.typeTest,
+            niveau: item.niveau,
+            avgScore: item.totalScore / item.count,
+            count: item.count,
+        }));
+        console.log(formattedData);
+       console.log("affiche  le bie,",testType);
+
+        return res.status(200).send({
+            message: 'Récupération réussie',
+            data: formattedData,
+        });
     }catch(error) {
         return res.status(500).send({message: "Error lors de la recuperation "})
 
