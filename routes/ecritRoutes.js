@@ -8,5 +8,6 @@ EcritRouter.get('/getEcrit', [verifyMidleware.verifyToken, verifyMidleware.isAdm
 EcritRouter.get('/getOneEcrit/:id', [verifyMidleware.verifyToken, verifyMidleware.isAdmin], ecritController.getOneEcriture);
 EcritRouter.post('/getOneEcritAndUpdate', [verifyMidleware.verifyToken, verifyMidleware.isAdmin], ecritController.updateEcrit);
 EcritRouter.get('/getEcritStudent', [verifyMidleware.verifyToken, verifyMidleware.isUser], ecritController.selEcritStudent);
+EcritRouter.put('/student/changeEcrit/:id', [verifyMidleware.verifyToken, verifyMidleware.isUser], ecritController.markAsReadEcrit);
 
 module.exports = EcritRouter;

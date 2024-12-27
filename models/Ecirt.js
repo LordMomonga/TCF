@@ -43,6 +43,10 @@ const Ecrit = new mongoose.Schema({
         type:String,
         default:null,
     },
+    vue: {
+        type: Boolean,
+        default:false,
+    },
 
 
 }, { timestamps: true })

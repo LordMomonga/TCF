@@ -4,6 +4,8 @@ const Audio = require('../models/Audio');
 
 exports.addAudio = async(req, res) => {
     const user_id = req.params.id;
+    const Notification = require('../models/Notification')
+
     try {
         console.log('Received data:',req.userId); 
 
@@ -21,6 +23,19 @@ exports.addAudio = async(req, res) => {
          let audio = new Audio(data);
          await audio.save();
 
+         
+
+        // Créer une notification pour l'utilisateur
+        const notification = new Notification({
+           utilisateur_id: req.userId,  // Assurez-vous d'envoyer l'ID de l'utilisateur qui doit recevoir la notification
+           typeNotification: 'Correction disponible',
+           typeUser:"user",
+           vue: false // La notification est par défaut non vue
+
+       });
+       await notification.save(); 
+
+       
         return res.status(200).send({message: "creation réussi"});
 
         
@@ -103,3 +118,19 @@ exports.selAudioStudent = async (req, res) => {
         return res.status(500).send({message: error});
     }
 }
+
+exports.markAsReadaUDIO= async (req, res) => {
+    try {
+        const solutionId = req.params.id;
+
+        const solution = await Audio.findByIdAndUpdate(solutionId, { vue: true }, { new: true });
+
+        if (!solution) {
+            return res.status(404).send({ message: 'Notification non trouvée' });
+        }
+
+        return res.status(200).json(solution);
+    } catch (error) {
+        return res.status(500).send({ message: error });
+    }
+};

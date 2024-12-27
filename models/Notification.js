@@ -10,6 +10,10 @@ const Notification = new mongoose.Schema({
         type: String,
         required: true
     },
+    typeUser: {
+        type: String,
+        required: true
+    },
     vue: {
         type: Boolean,
         required: true

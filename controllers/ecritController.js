@@ -1,5 +1,5 @@
 const Ecrit = require('../models/Ecirt');
-
+const Notification = require('../models/Notification')
 exports.addEcriture = async(req, res) =>{
     const user_id = req.params.id;
     let  academicYear = req.params.academicYear;
@@ -19,7 +19,22 @@ exports.addEcriture = async(req, res) =>{
         let eriture = new Ecrit(data);
         let ecriture_id = eriture._id;
 
+
+         
+
         await eriture.save();
+
+         // Créer une notification pour l'utilisateur
+         const notification = new Notification({
+            utilisateur_id: req.userId,  // Assurez-vous d'envoyer l'ID de l'utilisateur qui doit recevoir la notification
+            typeNotification: 'correction Disponible',
+            typeUser:"user",
+            vue: false // La notification est par défaut non vue
+
+        });
+        await notification.save(); 
+
+
         return res.status(200).send({message:'enregistrement reussi', data: ecriture_id})
         
     } catch (error) {
@@ -88,4 +103,20 @@ exports.getOneEcriture = async(req, res) =>{
             return res.status(500).send({message: error});
         }
     }
+    
+    exports.markAsReadEcrit = async (req, res) => {
+        try {
+            const solutionId = req.params.id;
+    
+            const solution = await Ecrit.findByIdAndUpdate(solutionId, { vue: true }, { new: true });
+    
+            if (!solution) {
+                return res.status(404).send({ message: 'Notification non trouvée' });
+            }
+    
+            return res.status(200).json(solution);
+        } catch (error) {
+            return res.status(500).send({ message: error });
+        }
+    };
     

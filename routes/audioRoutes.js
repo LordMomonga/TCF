@@ -8,5 +8,6 @@ audioRouter.get('/getAudio', [verifyMidleware.verifyToken, verifyMidleware.isAdm
 audioRouter.get('/getOne/:id', [verifyMidleware.verifyToken, verifyMidleware.isAdmin], audioController.getOneAudio);
 audioRouter.post('/getOneAndUpdate', [verifyMidleware.verifyToken, verifyMidleware.isAdmin], audioController.updateAudio);
 audioRouter.get('/student/getOne', [verifyMidleware.verifyToken, verifyMidleware.isUser], audioController.selAudioStudent);
+audioRouter.put('/student/changeVue/:id', [verifyMidleware.verifyToken, verifyMidleware.isUser], audioController.markAsReadaUDIO);
 
 module.exports = audioRouter;

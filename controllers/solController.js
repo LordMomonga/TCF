@@ -1,4 +1,5 @@
 const sol = require('../models/Sol');
+const Notification = require('../models/Notification')
 
 exports.createSolution = async(req, res) => {
     const user_id = req.params.id;
@@ -15,7 +16,20 @@ exports.createSolution = async(req, res) => {
         }
 
         let solution = new sol(data);
+
         await solution.save()
+
+          // Créer une notification pour l'utilisateur
+          const notification = new Notification({
+            utilisateur_id: req.userId,  // Assurez-vous d'envoyer l'ID de l'utilisateur qui doit recevoir la notification
+            typeNotification: 'Correction canditat compos',
+            typeUser:"admin",
+            vue: false // La notification est par défaut non vue
+ 
+        });
+        await notification.save(); 
+        console.log('a la recherche', notification, solution);
+
         return res.status(200).send({message:'enregistrement reussi', data: ecriture_id})
 
     } catch (error) {
