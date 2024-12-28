@@ -1,6 +1,6 @@
 const Applications = require("../models/Applications");
 const Classroom = require('../models/Classroom');
-
+const handleNotification = require('../midlewares/NotificationManager')
 
 exports.getAllApplications = async(req,res) => {
     try {
@@ -41,12 +41,15 @@ exports.newApplication = async (req,res) => {
             teacher_id: teacherData.teacher_id
         }
 
-        console.log("APPLICATION", data);
+
+      //  console.log("APPLICATION", data);
 
         let application = new Applications(data);
 
         await application.save();
 
+       // console.log(handleNotification, 'ca charge au moins');
+        
         return res.status(200).send({message: "Application Submmited Successfuly"})
     } catch (error) {
         console.log(error)

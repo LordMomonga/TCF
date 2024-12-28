@@ -2,6 +2,8 @@ const StudentInfo = require('../models/StudentInfo');
 const Speciality = require('../models/Speciality');
 const User = require('../models/User');
 const AcademicYear = require('../models/AcademicYear');
+const handleNotification = require('../midlewares/NotificationManager')
+const Notification = require('../models/Notification')
 
 exports.submitApplication =  async (req,res) => {
     try {
@@ -54,6 +56,15 @@ exports.submitApplication =  async (req,res) => {
 
         await studentApplication.save();
 
+ // Créer une notification pour l'utilisateur
+          const notification = new Notification({
+            utilisateur_id: req.userId,  // Assurez-vous d'envoyer l'ID de l'utilisateur qui doit recevoir la notification
+            typeNotification: 'Demande Abonnement',
+            typeUser:"admin",
+            vue: false // La notification est par défaut non vue
+ 
+        });
+        await notification.save(); 
         return res.status(200).send({message: 'canditature recue'})
 
         

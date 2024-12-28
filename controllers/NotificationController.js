@@ -17,9 +17,21 @@ exports.getAllNotification = async(req, res) => {
 
         return res.status(200).json(notifications);
     } catch (error) {
-        return res.status(500).send({ message: error });
+       return res.status(500).send({ message: error }); 
     }
 };
+
+exports.getAdminNotification = async(req, res) => {
+    try {
+        const notification=  await Notification.find({ typeUser:'admin'}).populate();
+        const notification2 =   await Notification.find({ vue: false, typeUser:'admin' });
+        return res.status(200).json({notification, notification2});
+        
+    } catch (error) {
+        return res.status(500).send({ message: error });
+    }
+}
+
 
 
 exports.markAsRead = async (req, res) => {
