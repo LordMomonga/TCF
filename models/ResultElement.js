@@ -22,7 +22,13 @@ const ResultElement = new mongoose.Schema({
     score:{
         type:String,
         required:true
-    }
+    },
+    vue:{
+        type:Boolean,
+        default:false
+    },
+    
+
 
 },{timestamps: true});
 

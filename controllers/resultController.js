@@ -34,6 +34,18 @@ exports.createResult = async(req, res) => {
     }
 }
 
+exports.getResultById = async(req, res)=>{
+    try {
+        let data1 = await Resultat.find({utilisateur_id: req.userId, typeTest:"comprehension ecrite"})
+        let data2 = await Resultat.find({utilisateur_id: req.userId, typeTest:"comprehension orale"})
+
+        return res.status(200).send({message: " Application succeed", data: {data1, data2}});
+    } catch (error) {
+        return res.status(500).send({message: error});
+    }
+} 
+
+
 exports.getResultElement = async(req, res) => {
     try {   
         userId = req.userId;

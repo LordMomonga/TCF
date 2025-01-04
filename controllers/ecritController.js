@@ -94,7 +94,6 @@ exports.getOneEcriture = async(req, res) =>{
 
         try {
             let studentId = req.userId;
-            console.log("bien ou bien");
             
             let data = await Ecrit.find({utilisateur_id: studentId}).populate('contenu1_id').populate('contenu2_id').populate('contenu3_id'); 
            
