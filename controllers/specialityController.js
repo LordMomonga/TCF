@@ -2,6 +2,7 @@ const Speciality = require('../models/Speciality');
 const randomString = require('../utils/randomString');
 const User =  require('../models/User');
 const handleNotification = require('../midlewares/NotificationManager')
+const StudentInfo = require('../models/StudentInfo');
 
 exports.createSpeciality = async (req, res) => {
     try {
@@ -59,6 +60,39 @@ exports.getAllSchools = async(req,res) => {
     } catch (error) {
         return res.status(500).send({message: error});
     }
+}
+
+exports.moveItemFirst = async(req, res) => {
+    const  id  = req.body.data
+    let user = req.userId;
+    try {
+        const itemToMove = await StudentInfo.find({ _id: id})
+
+        if(!itemToMove) {
+            return res.status(404).send({message:"Element introuvable"})
+        }
+
+        await StudentInfo.updateMany(
+            
+                { _id: {$ne:id}, student_id:user},
+                {$inc:{ position: 1}}
+            
+        )
+        console.log("voila ein",  itemToMove  );
+        
+        await StudentInfo.updateOne(
+            
+            { _id: id},
+            {$set:{ position: 0}}
+        
+    )
+   
+    return res.status(200).send({message:"Element déplacé avec un succces"})
+        
+    } catch (error) {
+        return res.status(500).send({message: error});
+    }
+    
 }
 
 

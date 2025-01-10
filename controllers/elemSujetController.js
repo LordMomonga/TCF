@@ -45,6 +45,8 @@ const updateSpecialities = async () => {
   };
 
 exports.getSujetExpressionEcrite = async(req, res) =>{
+    let special = req.params.id;
+
     const specName = await StudentInfo.find({student_id: req.userId}).populate("speciality_id")
     const spec = specName[0].speciality_id._id
     const specN = specName[0].speciality_id.name
@@ -57,9 +59,9 @@ exports.getSujetExpressionEcrite = async(req, res) =>{
     }
 
     try {
-        const expressionEcriteSujet1 = await ElemSujet.find( {TypeElement: "expression ecrite", NumeroSujet: 'sujet1', specialitie: spec}).populate();
-        const expressionEcriteSujet2 = await ElemSujet.find( {TypeElement: "expression ecrite", NumeroSujet: 'sujet2', specialitie: spec}).populate();
-        const expressionEcriteSujet3 = await ElemSujet.find( {TypeElement: "expression ecrite", NumeroSujet: 'sujet3', specialitie: spec}).populate();
+        const expressionEcriteSujet1 = await ElemSujet.find( {TypeElement: "expression ecrite", NumeroSujet: 'sujet1', specialitie: special}).populate();
+        const expressionEcriteSujet2 = await ElemSujet.find( {TypeElement: "expression ecrite", NumeroSujet: 'sujet2', specialitie: special}).populate();
+        const expressionEcriteSujet3 = await ElemSujet.find( {TypeElement: "expression ecrite", NumeroSujet: 'sujet3', specialitie: special}).populate();
 
         const shuffledSubjects1 = expressionEcriteSujet1.sort(() => 0.5 - Math.random());
         const shuffledSubjects2 = expressionEcriteSujet2.sort(() => 0.5 - Math.random());
@@ -83,6 +85,8 @@ return res.status(200).send({message: "statut find", data: allData });
     }
 }
 exports.getSujetExpressionOrale = async(req, res) =>{
+    let special = req.params.id;
+
     const specName = await StudentInfo.find({student_id: req.userId}).populate("speciality_id")
     const spec = specName[0].speciality_id._id
     const specN = specName[0].speciality_id.name
@@ -95,9 +99,9 @@ exports.getSujetExpressionOrale = async(req, res) =>{
     }
 
     try {
-        const expressionOraleSujet1 = await ElemSujet.find( {TypeElement: "expression orale", NumeroSujet: 'sujet1', specialitie: spec}).populate();
-        const expressionOraleSujet2 = await ElemSujet.find( {TypeElement: "expression orale", NumeroSujet: 'sujet2', specialitie: spec}).populate();
-        const expressionOraleSujet3 = await ElemSujet.find( {TypeElement: "expression orale", NumeroSujet: 'sujet3', specialitie: spec}).populate();
+        const expressionOraleSujet1 = await ElemSujet.find( {TypeElement: "expression orale", NumeroSujet: 'sujet1', specialitie: special}).populate();
+        const expressionOraleSujet2 = await ElemSujet.find( {TypeElement: "expression orale", NumeroSujet: 'sujet2', specialitie: special}).populate();
+        const expressionOraleSujet3 = await ElemSujet.find( {TypeElement: "expression orale", NumeroSujet: 'sujet3', specialitie: special}).populate();
 
         const shuffledSubjects1 = expressionOraleSujet1.sort(() => 0.5 - Math.random());
         const shuffledSubjects2 = expressionOraleSujet2.sort(() => 0.5 - Math.random());

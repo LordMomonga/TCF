@@ -8,6 +8,9 @@ const specialityRouter = express.Router();
 
 specialityRouter.post('/school/speciality', [verifyMidleware.verifyToken, verifyMidleware.isAdmin], specialityController.createSpeciality);
 
+specialityRouter.post('/student/speciality', [verifyMidleware.verifyToken, verifyMidleware.isUser], specialityController.moveItemFirst);
+
+
 specialityRouter.get('/school/specialities', [verifyMidleware.verifyToken, verifyMidleware.isAdmin], specialityController.getSchoolSpecialities);
 
 specialityRouter.delete('/school/speciality/:id', [verifyMidleware.verifyToken, verifyMidleware.isAdmin], specialityController.deleteSpeciality);

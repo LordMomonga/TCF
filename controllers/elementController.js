@@ -60,26 +60,18 @@ exports.getElement = async(req, res) =>{
 }
 exports.getComprehensionEcrite = async(req, res) =>{
 
+    let special = req.params.id;
+
     
-    const specName = await StudentInfo.find({student_id: req.userId}).populate("speciality_id")
-    const spec = specName[0].speciality_id._id
-    const specN = specName[0].speciality_id.name
-   
-    if(!spec) return
-    else {
-        if(!specN) {
-            spec = "TCF"  
-        }
-    }
 
     try {
         
-        const listeningC1 = await Element.find({typeElement: "comprehension ecrite", level: "C1", specialitie: spec}).populate()
-        const listeningC2 = await Element.find({typeElement: "comprehension ecrite", level: "C2", specialitie: spec}).populate()
-        const listeningB1 = await Element.find({typeElement: "comprehension ecrite", level: "B1", specialitie: spec}).populate()
-        const listeningB2 = await Element.find({typeElement: "comprehension ecrite", level: "B2", specialitie: spec}).populate()
-        const listeningA1 = await Element.find({typeElement: "comprehension ecrite", level: "A1", specialitie: spec}).populate()
-        const listeningA2 = await Element.find({typeElement: "comprehension ecrite", level: "A2", specialitie: spec}).populate()
+        const listeningC1 = await Element.find({typeElement: "comprehension ecrite", level: "C1", specialitie: special}).populate()
+        const listeningC2 = await Element.find({typeElement: "comprehension ecrite", level: "C2", specialitie: special}).populate()
+        const listeningB1 = await Element.find({typeElement: "comprehension ecrite", level: "B1", specialitie: special}).populate()
+        const listeningB2 = await Element.find({typeElement: "comprehension ecrite", level: "B2", specialitie: special}).populate()
+        const listeningA1 = await Element.find({typeElement: "comprehension ecrite", level: "A1", specialitie: special}).populate()
+        const listeningA2 = await Element.find({typeElement: "comprehension ecrite", level: "A2", specialitie: special}).populate()
         
         const shuffledlisteningC2 = listeningC2.sort(() => 0.5 - Math.random());
         const shuffledlisteningC1 = listeningC1.sort(() => 0.5 - Math.random());
@@ -133,26 +125,18 @@ const updateSpecialities = async () => {
   };
   
 exports.getComprehensionOrale = async(req, res) =>{
+    let special = req.params.id;
     
- const specName = await StudentInfo.find({student_id: req.userId}).populate("speciality_id")
-    const spec = specName[0].speciality_id._id
-    const specN = specName[0].speciality_id.name
-
-    if(!spec) return
-    else {
-        if(!specN) {
-            spec = "TCF"  
-        }
-    }
+ 
 
     try {
         
-        const speakingC1Promise = await Element.find({ typeElement: "comprehension orale", level: "C1",  specialitie: spec });
-        const speakingC2Promise = await Element.find({ typeElement: "comprehension orale", level: "C2", specialitie: spec });
-        const speakingB1Promise = await Element.find({ typeElement: "comprehension orale", level: "B1", specialitie: spec });
-        const speakingB2Promise = await Element.find({ typeElement: "comprehension orale", level: "B2", specialitie: spec });
-        const speakingA1Promise = await Element.find({ typeElement: "comprehension orale", level: "A1", specialitie: spec });
-        const speakingA2Promise = await Element.find({ typeElement: "comprehension orale", level: "A2", specialitie: spec });
+        const speakingC1Promise = await Element.find({ typeElement: "comprehension orale", level: "C1",  specialitie: special });
+        const speakingC2Promise = await Element.find({ typeElement: "comprehension orale", level: "C2", specialitie: special });
+        const speakingB1Promise = await Element.find({ typeElement: "comprehension orale", level: "B1", specialitie: special });
+        const speakingB2Promise = await Element.find({ typeElement: "comprehension orale", level: "B2", specialitie: special });
+        const speakingA1Promise = await Element.find({ typeElement: "comprehension orale", level: "A1", specialitie: special });
+        const speakingA2Promise = await Element.find({ typeElement: "comprehension orale", level: "A2", specialitie: special });
 
         const [
             speakingC1,
