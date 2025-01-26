@@ -50,15 +50,9 @@ exports.getResultElement = async(req, res) => {
     try {   
         userId = req.userId;
         let testType = req.params.id
-        let data 
-
-       if (testType === "comprehension ecrite" || "comprehension orale"){
-        data = await Resultat.find({utilisateur_id: userId, typeTest:testType});
-       } else 
-       {
-
-       }
        
+       let data = await Resultat.find({utilisateur_id: userId, typeTest:testType});
+     
 
 
         // Organiser les données pour le frontend
