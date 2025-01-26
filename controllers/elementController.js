@@ -80,11 +80,11 @@ exports.getComprehensionEcrite = async(req, res) =>{
         const shuffledlisteningA2 = listeningA2.sort(() => 0.5 - Math.random());
         const shuffledlisteningA1 = listeningA1.sort(() => 0.5 - Math.random());
 
-        const selectListeningA1 = shuffledlisteningA1.slice(0, 9)
-        const selectListeningA2 = shuffledlisteningA2.slice(0, 8)
-        const selectListeningB1 = shuffledlisteningB1.slice(0, 8)
-        const selectListeningB2 = shuffledlisteningB2.slice(0, 6)
-        const selectListeningC1 = shuffledlisteningC1.slice(0, 4)
+        const selectListeningA1 = shuffledlisteningA1.slice(0, 4)
+        const selectListeningA2 = shuffledlisteningA2.slice(0, 6)
+        const selectListeningB1 = shuffledlisteningB1.slice(0, 9)
+        const selectListeningB2 = shuffledlisteningB2.slice(0, 10)
+        const selectListeningC1 = shuffledlisteningC1.slice(0, 6)
         const selectListeningC2 = shuffledlisteningC2.slice(0, 4)
 
         const allData = {
@@ -163,11 +163,11 @@ exports.getComprehensionOrale = async(req, res) =>{
         const shuffledspeakingA2 = speakingA2.sort(() => 0.5 - Math.random());
         const shuffledspeakingA1 = speakingA1.sort(() => 0.5 - Math.random());
 
-        const selectListeningA1 = shuffledspeakingA1.slice(0, 8);
-        const selectListeningA2 = shuffledspeakingA2.slice(0, 9);
-        const selectListeningB1 = shuffledspeakingB1.slice(0, 8);
-        const selectListeningB2 = shuffledspeakingB2.slice(0, 5);
-        const selectListeningC1 = shuffledspeakingC1.slice(0, 5);
+        const selectListeningA1 = shuffledspeakingA1.slice(0, 4);
+        const selectListeningA2 = shuffledspeakingA2.slice(0, 6);
+        const selectListeningB1 = shuffledspeakingB1.slice(0, 9);
+        const selectListeningB2 = shuffledspeakingB2.slice(0, 10);
+        const selectListeningC1 = shuffledspeakingC1.slice(0, 6);
         const selectListeningC2 = shuffledspeakingC2.slice(0, 4);
 
         const allData = {
