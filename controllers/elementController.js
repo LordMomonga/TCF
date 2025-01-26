@@ -123,6 +123,15 @@ const updateSpecialities = async () => {
       console.error("Erreur lors de la mise à jour :", error);
     } 
   };
+
+  exports.OtherComprehensionOrale = async(req, res) =>{
+
+  }
+  
+  exports.OtherComprehensionEcrite = async(req, res)=>{
+
+  }
+
   
 exports.getComprehensionOrale = async(req, res) =>{
     let special = req.params.id;

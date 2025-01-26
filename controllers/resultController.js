@@ -30,7 +30,7 @@ exports.createResult = async(req, res) => {
         
     } catch (error) {
         return res.status(500).send({message: error});
-
+        
     }
 }
 
@@ -50,8 +50,15 @@ exports.getResultElement = async(req, res) => {
     try {   
         userId = req.userId;
         let testType = req.params.id
+        let data 
 
-        let data = await Resultat.find({utilisateur_id: userId, typeTest:testType});
+       if (testType === "comprehension ecrite" || "comprehension orale"){
+        data = await Resultat.find({utilisateur_id: userId, typeTest:testType});
+       } else 
+       {
+
+       }
+       
 
 
         // Organiser les données pour le frontend

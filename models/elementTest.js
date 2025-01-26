@@ -10,34 +10,47 @@ const Element = new mongoose.Schema({
       required:true
     }
     ,
-  solution1:  
+  solution1:   
         {
           type: String,
-          required: true
+          default:null,
         }
       ,
       solution2:  
         {
           type: String,
-          required: true
+          default:null,
         }
       ,
       solution3:  
         {
           type: String,
-          required: true
+          default:null,
         }
       ,
       solution4:  
         {
           type: String,
-          required: true
+          default:null,
         }
       ,
     response:{
         type:String,
         required:true
     },
+
+    subValue:[{
+     subquestion: {
+      type:String,
+      default:null,
+   },
+   subAnswer:{
+    type:String,
+      default:null,
+   }
+
+}],
+
     typeElement:{
       type:String,
       required:true
